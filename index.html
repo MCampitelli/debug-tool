@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="debugging.png" type="image/x-icon">
+  <title>Debug Tool</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="default.css">
+  
+  
+  <link rel="stylesheet" type="text/css" href="prism.css">
+  <link rel="stylesheet" type="text/css" href="alter_theme.css">
+  <link rel="stylesheet" type="text/css" href="components.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+  
+  <!-- <script src="logs.js"></script> -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
+  <script src="https://kit.fontawesome.com/998c60ef77.js" crossorigin="anonymous"></script>
+
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <aside class="sidebar">
+    <div>
+      <img class="logo" src="debugging.png" alt="">
+      <nav class="nav" >
+        <a href="#" onclick="activeDebug()" id="menu-Debug">Debug</a>
+        <a href="#" onclick="activeReplace()" id="menu-Replace">Replace</a>
+        <!-- <a href="#" onclick="" id="menu-Logs">Logs</a> -->
+      </nav>
+    </div>
+    <div class="footer">© 2025 - Marcelo Campitelli</div>
+  </aside>
+
+  <main>
+    <div id="debug">
+        <h2>Debug</h2>
+        <p class="description">Insira as informações para a saída desejada:</p>
+
+        <div class="card">
+            <div class="checkbox-group">
+                <div class="input-group ig-1">
+                    <input class="checkbox" type="checkbox" id="check1" checked>
+                    <input class="ds_check" type="text" id="option1" placeholder="Digite algo...">
+                </div>
+                <div class="input-group ig-2">
+                    <input class="checkbox" type="checkbox" id="check2" checked>
+                    <input class="ds_check" type="text" id="option2" placeholder="Digite algo...">
+                </div>
+                <div class="input-group ig-3">
+                    <input class="checkbox" type="checkbox" id="check3">
+                    <input class="ds_check" type="text" id="option3" placeholder="Digite algo...">
+                </div>
+                <div class="input-group ig-4">
+                    <input class="checkbox" type="checkbox" id="check4">
+                    <input class="ds_check" type="text" id="option4" placeholder="Digite algo...">
+                </div>
+                <div class="input-group ig-5">
+                    <input class="checkbox" type="checkbox" id="check5">
+                    <input class="ds_check" type="text" id="option5" placeholder="Digite algo...">
+                </div>
+            </div>
+
+            <h3>Insira o texto:</h3>
+            <textarea rows="5" id="editor1" placeholder="Digite sua query aqui..."></textarea>
+            
+
+            <div class="radio-container">
+                <div class="radio-group">
+                    <label class="radio-label"><input type="radio" name="modo-formatacao" value="modo1" checked> Raise Application</label>
+                    <label class="radio-label"><input type="radio" name="modo-formatacao" value="modo2"> Mensagem Abort</label>
+                    <label class="radio-label"><input type="radio" name="modo-formatacao" value="modo3"> Insert em Campo</label>
+                    <label class="radio-label"><input type="radio" name="modo-formatacao" value="modo4"> Log tasy</label>
+                    <div id="codigoLogContainer"">
+                        <input id="cdLog" type="text" placeholder="CD_LOG" maxlength="5" pattern="\d*">
+                    </div>
+                </div>
+                <div class="area-button buttons-container">
+                    <a href="#" onclick="formatarTexto()" class="button btn-principal">Formatar</a>
+                    <a href="#" onclick="limparPainel()" class="button btn-secundario">Limpar</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card">
+            <h3>Resultado:</h3>
+            <pre class="pre1">
+                <button class="copy-button" onclick="copiarTexto()"><i class="fas fa-copy"></i></button>
+                <code id="highlight1" class="language-sql"></code>
+            </pre>
+        </div>
+    </div>
+
+    <div id="replace">
+        <h2>Replace</h2>
+        <p class="description">Insira o select e as variáveis para substituição:</p>
+
+        <div class="replace-cards-container">
+            <div class="card">
+                <div class="fields-group">
+                    <div class="select-group">
+                        <h3>Select:</h3>
+                        <textarea id="editor2" placeholder="Digite seu select aqui..."></textarea>
+                    </div>
+
+                    <div class="variables-group">
+                        <h3>Variáveis:</h3>
+                        <textarea id="variaveis" placeholder="Digite as variáveis aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="buttons-container">
+                    <a href="#" onclick="substituirVariaveis()" class="button btn-principal">Substituir</a>
+                    <a href="#" onclick="limparPainelSelect()" class="button btn-secundario">Limpar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Resultado:</h3>
+            <pre class="pre2">
+                <button class="copy-button" onclick="copiarTexto()"><i class="fas fa-copy"></i></button>
+                <code id="highlight2" class="language-sql"></code>
+            </pre>
+            <div class="buttons-container">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="logs">
+        <div class="panel">
+            <div class="panel_replace">
+                <div class="select">
+                    <h2>Código:</h2>
+                    <div id="codigo_original" class="editor-container language-sql" contenteditable="true"></div>
+                </div>
+                <div>
+                    <h2>Momento:</h2>
+                    <fieldset>
+                        <label class="container-component"><input type="radio" name="modo" id="antes" checked> Apenas Antes<span class="checkmark radiobutton"></span></label>
+                        <label class="container-component"><input type="radio" name="modo" id="depois"> Apenas Depois<span class="checkmark radiobutton"></span></label>
+                        <label class="container-component"><input type="radio" name="modo" id="ambos"> Antes e Depois<span class="checkmark radiobutton"></span></label>
+                    </fieldset>
+                </div>
+                <div>
+                    <h2>Tipo:</h2>
+                    <fieldset>
+                        <label class="container-component">IF
+                            <input type="checkbox" id="log_if" checked="checked"><span class="checkmark checkbox"></span>
+                          </label>
+                          <label class="container-component">LOOP | WHILE | FOR
+                            <input type="checkbox" id="log_loop"><span class="checkmark checkbox"></span>
+                          </label>
+                          <label class="container-component">PROCEDURE
+                            <input type="checkbox" id="log_proc"><span class="checkmark checkbox"></span>
+                          </label>
+                          <label class="container-component">FUNCTION
+                            <input type="checkbox" id="log_func"><span class="checkmark checkbox"></span>
+                          </label>
+                    </fieldset>
+                </div>
+            </div>                   
+            <div class="area-button"> 
+                <a href="#" onclick="formatarLogs()" class="button  btn-principal">Aplicar Logs</a>
+            </div>
+        </div>
+        
+        <div class="panel panel3">
+            <h2>Resultado:</h2>
+            <pre class="pre3"><code id="highlight3" class="language-sql"></code></pre>
+            <div class="area-button">
+                <a href="#" onclick="limparPainelLogs()" class="button btn-secundario">Limpar</a>
+                <a href="#" onclick="copiarTexto()" class="button btn-secundario">Copiar</a>
+            </div>
+        </div>
+        
+    </div> -->
+
+  </main>
+</body>
+</html>

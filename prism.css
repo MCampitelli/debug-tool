@@ -1,0 +1,30 @@
+.editor-container {
+    border: 1px solid #fff;
+    border-radius: 15px;
+    background-color: #fff;
+    overflow: auto;
+    padding: 1rem;
+    height: 150px;
+}
+
+[contenteditable] {
+    outline: none;
+    white-space: pre;
+}
+
+pre { 
+    border: 1px solid #fff;
+    border-radius: 15px;
+}
+
+.pre1 {
+    max-height: 253px;
+}
+
+.pre2 {
+    max-height: 373px;
+}
+
+.pre3 {
+    max-height: 369px;
+}
