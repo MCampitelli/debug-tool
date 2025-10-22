@@ -204,15 +204,15 @@ function limparPainelLogs() {
 function copiarTexto() {
     var tab = '';
     const debug = document.getElementById("debug").style.display;
-    const logs = document.getElementById("logs").style.display;
+    //const logs = document.getElementById("logs").style.display;
     const replace = document.getElementById("replace").style.display;
     switch (true) {
         case debug === "block":
             tab = 'highlight1';
           break;
-        case logs === "block":
-            tab = 'highlight3';
-          break;
+        // case logs === "block":
+        //     tab = 'highlight3';
+        //   break;
         case replace === "block":
             tab = 'highlight2';
           break;
