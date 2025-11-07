@@ -84,7 +84,7 @@ function formatarTexto() {
         } else if (modoFormatacao === 'modo3') {
             textoFormatado = "insert into nm_tabela (nm_campo) values (" + '\n' + palavrasFormatadas.join('\n') + ");";
         } else if (modoFormatacao === 'modo4') {
-            textoFormatado = select_log_tasy + "\n\n" + "gravar_log_tasy(19989, 'Atributos:'" + '\n' + palavrasFormatadas.join('\n') + "\n" + ", 'debug_tool');";
+            textoFormatado = select_log_tasy + "\n\n" + "gravar_log_tasy(" + (cdLogInput ? cdLogInput : "19989") + ", 'Atributos:'" + '\n' + palavrasFormatadas.join('\n') + "\n" + ", 'debug_tool');";
         }
     } else {
         textoFormatado = "Nenhuma palavra encontrada para exibição.";
