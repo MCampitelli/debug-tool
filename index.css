@@ -183,10 +183,10 @@ label {
 
 .button {
     background-color: var(--primary);
-    color: white;
+    color: var(--text-dark);
     padding: 0.5rem 1rem;
     border-radius: var(--radius);
-    border: none;
+    border: var(--primary) 1px solid;
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s;
@@ -202,7 +202,7 @@ label {
 }
 
 .button:hover {
-    background-color: #E08502;
+    background-color: white;
 }
 
 .radio-container {
@@ -216,6 +216,13 @@ label {
 #codigoLogContainer input {
     max-width: 120px;
     margin: 0;
+}
+
+.code-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
 }
 
 pre {
@@ -238,29 +245,18 @@ code {
     white-space: pre;
 }
 
-.copy-button {
-    position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    border-radius: 4px;
-    color: #abb2bf;
+.code-title .copy-button {
+    position: static;
+    width: 36px;
+    height: 36px;
+    border: var(--primary) 1px solid;
+    border-radius: 50%;
+    background: var(--primary);
     cursor: pointer;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .copy-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
-}
-
-.copy-button i {
-    font-size: 14px;
+    background: white;
 }
 
 .fields-group {
